@@ -6,8 +6,8 @@ import os
 
 cwd = os.getcwd()
 
-if len(sys.argv) != 3:
-    print("\nZadajte argumenty: xmlFile.xml xslFile.xsl")
+if len(sys.argv) != 4:
+    print("\nZadajte argumenty: xmlFile.xml xslFile.xsl outputFormat")
 else:
     xmlFilename = cwd + "\\" + sys.argv[1]
     xmlText = etree.parse(xmlFilename)
@@ -15,7 +15,7 @@ else:
     transText = etree.parse(transFilename)
     transformXMLWithXSLT = etree.XSLT(transText)
     transformationResult = transformXMLWithXSLT(xmlText)
-    outputFilename = cwd + "\\" + sys.argv[2][0 : len(sys.argv[2]) - 4] + "_output.txt"
+    outputFilename = cwd + "\\" + sys.argv[2][0 : len(sys.argv[2]) - 4] + "_output." + str(sys.argv[3])
     outputFile = open(outputFilename, "w")
     outputFile.write(str(transformationResult))
     
